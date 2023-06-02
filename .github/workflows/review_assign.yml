@@ -13,9 +13,7 @@ jobs:
     steps:
       # ランダムでレビュアーをアサイン
       - uses: hkusu/review-assign-action@v1
-        env: 
-          REVIEWERS: ${{ vars.REVIEWERS }}
         with:
           assignees: ${{ github.actor }}
-          reviewers: REVIEWERS
+          reviewers: ${{ vars.REVIEWERS }}
           max-num-of-reviewers: 1
