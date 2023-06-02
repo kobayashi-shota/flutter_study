@@ -17,3 +17,4 @@ jobs:
           assignees: ${{ github.actor }}
           reviewers: ${{ vars.REVIEWERS }}
           max-num-of-reviewers: 2
+          draft-keyword: wip
