@@ -16,4 +16,4 @@ jobs:
         with:
           assignees: ${{ github.actor }}
           reviewers: ${{ vars.REVIEWERS }}
-          max-num-of-reviewers: 1
+          max-num-of-reviewers: 2
