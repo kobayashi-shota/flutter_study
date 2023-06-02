@@ -1,0 +1,20 @@
+name: Review assign
+
+on:
+  pull_request:
+    types: [opened, ready_for_review]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  assign:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    steps:
+      # ランダムでレビュアーをアサイン
+      - uses: hkusu/review-assign-action@v1
+        with:
+          assignees: ${{ github.actor }}
+          reviewers: ${{ vars.REVIEWERS }}
+          max-num-of-reviewers: 2
+          draft-keyword: wip
