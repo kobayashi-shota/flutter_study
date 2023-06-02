@@ -27,12 +27,12 @@ class _CountUpPageState extends State<CountUpPage> {
   }
 
   void _incrementCounter() {
-    setState(() {
-      if (_isLimit()) {
-        _showLimitDialog();
-        return;
-      }
+    if (_isLimit()) {
+      _showLimitDialog();
+      return;
+    }
 
+    setState(() {
       _counter++;
     });
   }
