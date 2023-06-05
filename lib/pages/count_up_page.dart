@@ -14,8 +14,8 @@ class _CountUpPageState extends State<CountUpPage> {
 
   final int limit = 100;
 
-  bool _isLimit() {
-    return _counter == limit;
+  bool get _isLimit {
+    return _counter >= limit;
   }
 
   Future<void> _resetCountAndPop() async {
@@ -27,7 +27,7 @@ class _CountUpPageState extends State<CountUpPage> {
   }
 
   void _incrementCounter() {
-    if (_isLimit()) {
+    if (_isLimit) {
       _showLimitDialog();
       return;
     }
