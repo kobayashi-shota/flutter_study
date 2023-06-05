@@ -5,7 +5,7 @@ class TodoAppScreen extends StatefulWidget {
   const TodoAppScreen({super.key});
 
   @override
-  _TodoAppScreenState createState() => _TodoAppScreenState();
+  State<TodoAppScreen> createState() => _TodoAppScreenState();
 }
 
 class _TodoAppScreenState extends State<TodoAppScreen> {
