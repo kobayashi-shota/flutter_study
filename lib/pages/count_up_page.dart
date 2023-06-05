@@ -12,7 +12,7 @@ class CountUpPage extends StatefulWidget {
 class _CountUpPageState extends State<CountUpPage> {
   int _counter = 0;
 
-  int get limit => 100;
+  final int limit = 100;
 
   bool _isLimit() {
     return _counter == limit;
