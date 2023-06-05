@@ -38,7 +38,7 @@ class _CountUpPageState extends State<CountUpPage> {
   }
 
   void _showLimitDialog() {
-    showDialog(
+    showDialog<void>(
         context: context,
         builder: (BuildContext context) =>
             SimpleDialog(title: const Text('お疲れ様でした🎉'), children: [
@@ -46,23 +46,27 @@ class _CountUpPageState extends State<CountUpPage> {
                 onPressed: _resetCountAndPop,
                 child: const Text(
                   'カウントをリセット',
-                  style: TextStyle(
-                      color: Colors.redAccent,
-                      fontSize: 28.0,
-                      fontWeight: FontWeight.bold),
-                ),
+              style: TextStyle(
+                color: Colors.redAccent,
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
               ),
-              SimpleDialogOption(
-                onPressed: () => Navigator.pop(context),
-                child: const Text(
-                  'キャンセル',
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.normal),
-                ),
+            ),
               ),
-            ]));
+          SimpleDialogOption(
+            onPressed: () => Navigator.pop(context),
+            child: const Text(
+              'キャンセル',
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 24,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -75,7 +79,7 @@ class _CountUpPageState extends State<CountUpPage> {
       body: Center(
         child: Text(
           '現在のカウント: $_counter',
-          style: const TextStyle(fontSize: 32.0, fontWeight: FontWeight.w400),
+          style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w400),
         ),
       ),
       floatingActionButton: FloatingActionButton(
