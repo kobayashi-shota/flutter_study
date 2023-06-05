@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study/pages/count_up_page.dart';
+import 'package:flutter_study/presentation/screen/count_up_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const CountUpPage(title: 'Flutter Count Up Page'),
+      home: const CountUpScreen(title: 'Flutter Count Up Page'),
     );
   }
 }

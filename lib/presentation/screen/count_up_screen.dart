@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 
-class CountUpPage extends StatefulWidget {
-  const CountUpPage({super.key, required this.title});
+class CountUpScreen extends StatefulWidget {
+  const CountUpScreen({super.key, required this.title});
 
   final String title;
 
   @override
-  State<CountUpPage> createState() => _CountUpPageState();
+  State<CountUpScreen> createState() => _CountUpScreenState();
 }
 
-class _CountUpPageState extends State<CountUpPage> {
+class _CountUpScreenState extends State<CountUpScreen> {
   int _counter = 0;
 
   final int limit = 100;
