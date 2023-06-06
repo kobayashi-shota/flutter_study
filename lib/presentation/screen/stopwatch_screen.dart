@@ -10,12 +10,13 @@ class StopwatchScreen extends StatefulWidget {
 }
 
 class _StopwatchScreenState extends State<StopwatchScreen> {
-  late Stopwatch _stopwatch;
-
-  // Duration _elapsedTime = Duration.zero;
+  final Stopwatch _stopwatch = Stopwatch();
   late Timer _timer;
   int _milliseconds = 0;
   bool _isRunning = false;
+  late final double _deviceWidth = MediaQuery.of(context).size.width;
+  late double elapsedWidth = _deviceWidth * 0.2;
+  late double separatorWidth = _deviceWidth * 0.05;
 
   ButtonStyle get startButtonStyle => ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(Colors.greenAccent),
@@ -31,15 +32,19 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
         ),
       );
 
-  late double? _deviceWidth;
+  SizedBox timerBox(String text, double width)
+  => SizedBox(
+        width: width,
+        child: Text(
+          text,
+          style: const TextStyle(
+              fontSize: 48,
+              fontWeight: FontWeight.normal,
+          ),
+        ),
+      );
 
-  @override
-  void initState() {
-    super.initState();
-    _stopwatch = Stopwatch();
-  }
-
-  void startStopwatch() {
+  void start() {
     setState(() {
       _isRunning = true;
     });
@@ -55,7 +60,7 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
     });
   }
 
-  void stopStopwatch() {
+  void stop() {
     setState(() {
       _isRunning = false;
     });
@@ -63,7 +68,7 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
     _timer.cancel();
   }
 
-  void resetStopwatch() {
+  void reset() {
     _stopwatch
       ..stop()
       ..reset();
@@ -81,16 +86,14 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
 
   @override
   Widget build(BuildContext context) {
-    _deviceWidth = MediaQuery.of(context).size.width;
+    final hours =
+        (_milliseconds / (1000 * 60 * 60)).floor().toString().padLeft(2, '0');
     final minutes =
-        ((_milliseconds / (1000 * 60)) % 60).floor().toString()
-            .padLeft(2, '0');
+        ((_milliseconds / (1000 * 60)) % 60).floor().toString().padLeft(2, '0');
     final seconds =
-        ((_milliseconds / 1000) % 60).floor().toString()
-            .padLeft(2, '0');
+        ((_milliseconds / 1000) % 60).floor().toString().padLeft(2, '0');
     final milliseconds =
-        (_milliseconds % 1000 ~/ 10).toString()
-            .padLeft(2, '0');
+        (_milliseconds % 1000 ~/ 10).toString().padLeft(2, '0');
 
     return Scaffold(
       appBar: AppBar(
@@ -101,45 +104,34 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                SizedBox(
-                  width: _deviceWidth! / 4.0,
-                  child: Text(
-                    '$minutes:',
-                    style: const TextStyle(fontWeight: FontWeight.w400),
-                  ),
-                ),
-                SizedBox(
-                  width: _deviceWidth! / 4.0,
-                  child: Text(
-                    '$seconds.',
-                    style: const TextStyle(fontWeight: FontWeight.w400),
-                  ),
-                ),
-                SizedBox(
-                  width: _deviceWidth! / 4.0,
-                  child: Text(
-                    milliseconds,
-                    style: const TextStyle(fontWeight: FontWeight.w400),
-                  ),
-                ),
-              ],
+            FittedBox(
+              fit: BoxFit.fill,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  timerBox(hours, elapsedWidth),
+                  timerBox(':', separatorWidth),
+                  timerBox(minutes, elapsedWidth),
+                  timerBox(':', separatorWidth),
+                  timerBox(seconds, elapsedWidth),
+                  timerBox('.', separatorWidth),
+                  timerBox(milliseconds, elapsedWidth),
+                ],
+              ),
             ),
             const SizedBox(height: 24),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: _isRunning ? stopStopwatch : startStopwatch,
+                  onPressed: _isRunning ? null : reset,
+                  child: const Text('リセット'),
+                ),
+                const SizedBox(width: 16),
+                ElevatedButton(
+                  onPressed: _isRunning ? stop : start,
                   style: _isRunning ? stopButtonStyle : startButtonStyle,
                   child: _isRunning ? const Text('停止') : const Text('開始'),
-                ),
-                const SizedBox(width: 24),
-                ElevatedButton(
-                  onPressed: _isRunning ? null : resetStopwatch,
-                  child: const Text('リセット'),
                 ),
               ],
             ),
