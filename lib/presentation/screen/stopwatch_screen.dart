@@ -15,14 +15,14 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
   int _milliseconds = 0;
   bool _isRunning = false;
 
-  get startButtonStyle => ButtonStyle(
+  ButtonStyle get startButtonStyle => ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(Colors.greenAccent),
         textStyle: MaterialStateProperty.all<TextStyle>(
           const TextStyle(fontWeight: FontWeight.w400),
         ),
       );
 
-  get stopButtonStyle => ButtonStyle(
+  ButtonStyle get stopButtonStyle => ButtonStyle(
         backgroundColor: MaterialStateProperty.all<Color>(Colors.redAccent),
         textStyle: MaterialStateProperty.all<TextStyle>(
           const TextStyle(fontWeight: FontWeight.w400),
