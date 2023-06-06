@@ -102,7 +102,6 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Row(
-              mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 SizedBox(
