@@ -136,7 +136,7 @@ class _TodoAppScreenState extends State<TodoAppScreen> {
         title: const Text('Todoアプリ'),
       ),
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -150,12 +150,12 @@ class _TodoAppScreenState extends State<TodoAppScreen> {
                 validator: validate,
               ),
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: _addTodoItem,
               child: const Text('追加'),
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 16),
             Expanded(
               child: ListView.separated(
                 itemCount: todoItems.length,
