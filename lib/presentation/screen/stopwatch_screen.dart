@@ -16,14 +16,18 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
   bool _isRunning = false;
 
   get startButtonStyle => ButtonStyle(
-      backgroundColor: MaterialStateProperty.all<Color>(Colors.greenAccent),
-      textStyle: MaterialStateProperty.all<TextStyle>(
-          const TextStyle(fontWeight: FontWeight.w400)));
+        backgroundColor: MaterialStateProperty.all<Color>(Colors.greenAccent),
+        textStyle: MaterialStateProperty.all<TextStyle>(
+          const TextStyle(fontWeight: FontWeight.w400),
+        ),
+      );
 
   get stopButtonStyle => ButtonStyle(
-      backgroundColor: MaterialStateProperty.all<Color>(Colors.redAccent),
-      textStyle: MaterialStateProperty.all<TextStyle>(
-          const TextStyle(fontWeight: FontWeight.w400)));
+        backgroundColor: MaterialStateProperty.all<Color>(Colors.redAccent),
+        textStyle: MaterialStateProperty.all<TextStyle>(
+          const TextStyle(fontWeight: FontWeight.w400),
+        ),
+      );
   double? _deviceWidth, _deviceHeight;
 
   @override
@@ -107,17 +111,19 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                   ),
                 ),
                 SizedBox(
-                    width: (_deviceWidth! / 4.0),
-                    child: Text(
-                      '$seconds.',
-                      style: const TextStyle(fontWeight: FontWeight.w400),
-                    )),
+                  width: (_deviceWidth! / 4.0),
+                  child: Text(
+                    '$seconds.',
+                    style: const TextStyle(fontWeight: FontWeight.w400),
+                  ),
+                ),
                 SizedBox(
-                    width: (_deviceWidth! / 4.0),
-                    child: Text(
-                      milliseconds,
-                      style: const TextStyle(fontWeight: FontWeight.w400),
-                    )),
+                  width: (_deviceWidth! / 4.0),
+                  child: Text(
+                    milliseconds,
+                    style: const TextStyle(fontWeight: FontWeight.w400),
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 24),
@@ -125,11 +131,12 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                    onPressed: _isRunning
-                        ? () => stopStopwatch()
-                        : () => startStopwatch(),
-                    style: _isRunning ? stopButtonStyle : startButtonStyle,
-                    child: _isRunning ? const Text('停止') : const Text('開始')),
+                  onPressed: _isRunning
+                      ? () => stopStopwatch()
+                      : () => startStopwatch(),
+                  style: _isRunning ? stopButtonStyle : startButtonStyle,
+                  child: _isRunning ? const Text('停止') : const Text('開始'),
+                ),
                 const SizedBox(width: 24),
                 ElevatedButton(
                   onPressed: _isRunning ? null : () => resetStopwatch(),
