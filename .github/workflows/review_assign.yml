@@ -13,6 +13,8 @@ jobs:
     steps:
       # ランダムでレビュアーをアサイン
       - uses: hkusu/review-assign-action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           assignees: ${{ github.actor }}
           reviewers: ${{ vars.REVIEWERS }}
