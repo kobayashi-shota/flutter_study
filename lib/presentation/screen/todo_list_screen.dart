@@ -44,7 +44,7 @@ class _TodoAppScreenState extends State<TodoAppScreen> {
               onChanged: (value) {
                 editedTitle = value;
               },
-              validator: (value) => validate(value),
+              validator: validate,
             ),
           ),
           actions: [
@@ -147,7 +147,7 @@ class _TodoAppScreenState extends State<TodoAppScreen> {
                 decoration: const InputDecoration(
                   labelText: 'タイトル',
                 ),
-                validator: (value) => validate(value),
+                validator: validate,
               ),
             ),
             const SizedBox(height: 16.0),
