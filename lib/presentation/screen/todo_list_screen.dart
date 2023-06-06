@@ -172,7 +172,7 @@ class _TodoAppScreenState extends State<TodoAppScreen> {
                               ? TextDecoration.lineThrough
                               : null,
                           fontSize: 24,
-                      )
+                      ),
                     ),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
