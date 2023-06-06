@@ -131,15 +131,13 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: _isRunning
-                      ? () => stopStopwatch()
-                      : () => startStopwatch(),
+                  onPressed: _isRunning ? stopStopwatch : startStopwatch,
                   style: _isRunning ? stopButtonStyle : startButtonStyle,
                   child: _isRunning ? const Text('停止') : const Text('開始'),
                 ),
                 const SizedBox(width: 24),
                 ElevatedButton(
-                  onPressed: _isRunning ? null : () => resetStopwatch(),
+                  onPressed: _isRunning ? null : resetStopwatch,
                   child: const Text('リセット'),
                 ),
               ],
