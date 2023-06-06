@@ -82,13 +82,13 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
   @override
   Widget build(BuildContext context) {
     _deviceWidth = MediaQuery.of(context).size.width;
-    String minutes =
+    final minutes =
         ((_milliseconds / (1000 * 60)) % 60).floor().toString()
             .padLeft(2, '0');
-    String seconds =
+    final seconds =
         ((_milliseconds / 1000) % 60).floor().toString()
             .padLeft(2, '0');
-    String milliseconds =
+    final milliseconds =
         (_milliseconds % 1000 ~/ 10).toString()
             .padLeft(2, '0');
 
