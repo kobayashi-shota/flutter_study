@@ -17,7 +17,7 @@ class _TodoAppScreenState extends State<TodoAppScreen> {
 
   void _addTodoItem() {
     if (_addFormKey.currentState!.validate()) {
-      String title = _textEditingController.text.trim();
+      final title = _textEditingController.text.trim();
 
       setState(() {
         todoItems.add(TodoItem(title: title));
@@ -31,7 +31,7 @@ class _TodoAppScreenState extends State<TodoAppScreen> {
     showDialog(
       context: context,
       builder: (context) {
-        String editedTitle = todoItem.title;
+        var editedTitle = todoItem.title;
         return AlertDialog(
           title: Text('Todoの編集: ${todoItem.title}'),
           content: Form(
@@ -112,7 +112,7 @@ class _TodoAppScreenState extends State<TodoAppScreen> {
       return 'タイトルを入力してください';
     }
 
-    bool hasDuplicate = todoItems.any((TodoItem item) {
+    final hasDuplicate = todoItems.any((TodoItem item) {
       return item.title == title;
     });
 
