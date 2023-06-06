@@ -135,25 +135,26 @@ class _TodoAppScreenState extends State<TodoAppScreen> {
       appBar: AppBar(
         title: const Text('Todoアプリ'),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Form(
-              key: _addFormKey,
-              child: TextFormField(
-                controller: _textEditingController,
-                decoration: const InputDecoration(
-                  labelText: 'タイトル',
+      body: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Form(
+                key: _addFormKey,
+                child: TextFormField(
+                  controller: _textEditingController,
+                  decoration: const InputDecoration(
+                    labelText: 'タイトル',
+                  ),
+                  validator: validate,
                 ),
-                validator: validate,
               ),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: _addTodoItem,
-              child: const Text('追加'),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: _addTodoItem,
+                child: const Text('追加'),
             ),
             const SizedBox(height: 16),
             Expanded(
@@ -183,24 +184,25 @@ class _TodoAppScreenState extends State<TodoAppScreen> {
                             setState(() {
                               todoItems[index].completed = value ?? false;
                             });
-                          },
-                        ),
-                        IconButton(
-                          icon: const Icon(Icons.delete),
-                          onPressed: () {
-                            _deleteTodoItem(todoItems[index]);
-                          },
-                        ),
-                      ],
-                    ),
-                    onTap: () {
-                      _editTodoItem(todoItems[index]);
-                    },
-                  );
-                },
+                            },
+                          ),
+                          IconButton(
+                            icon: const Icon(Icons.delete),
+                            onPressed: () {
+                              _deleteTodoItem(todoItems[index]);
+                            },
+                          ),
+                        ],
+                      ),
+                      onTap: () {
+                        _editTodoItem(todoItems[index]);
+                      },
+                    );
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
