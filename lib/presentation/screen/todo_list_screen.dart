@@ -28,7 +28,7 @@ class _TodoAppScreenState extends State<TodoAppScreen> {
   }
 
   void _editTodoItem(TodoItem todoItem) {
-    showDialog(
+    showDialog<void>(
       context: context,
       builder: (context) {
         var editedTitle = todoItem.title;
@@ -73,7 +73,7 @@ class _TodoAppScreenState extends State<TodoAppScreen> {
   }
 
   void _deleteTodoItem(TodoItem todoItem) {
-    showDialog(
+    showDialog<void>(
       context: context,
       builder: (context) {
         return AlertDialog(
