@@ -30,7 +30,8 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
           const TextStyle(fontWeight: FontWeight.w400),
         ),
       );
-  double? _deviceWidth;
+
+  late double? _deviceWidth;
 
   @override
   void initState() {
