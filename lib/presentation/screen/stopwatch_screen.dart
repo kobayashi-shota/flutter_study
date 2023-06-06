@@ -103,21 +103,21 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 SizedBox(
-                  width: (_deviceWidth! / 4.0),
+                  width: _deviceWidth! / 4.0,
                   child: Text(
                     '$minutes:',
                     style: const TextStyle(fontWeight: FontWeight.w400),
                   ),
                 ),
                 SizedBox(
-                  width: (_deviceWidth! / 4.0),
+                  width: _deviceWidth! / 4.0,
                   child: Text(
                     '$seconds.',
                     style: const TextStyle(fontWeight: FontWeight.w400),
                   ),
                 ),
                 SizedBox(
-                  width: (_deviceWidth! / 4.0),
+                  width: _deviceWidth! / 4.0,
                   child: Text(
                     milliseconds,
                     style: const TextStyle(fontWeight: FontWeight.w400),
