@@ -28,7 +28,7 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
           const TextStyle(fontWeight: FontWeight.w400),
         ),
       );
-  double? _deviceWidth, _deviceHeight;
+  double? _deviceWidth;
 
   @override
   void initState() {
@@ -79,7 +79,6 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
   @override
   Widget build(BuildContext context) {
     _deviceWidth = MediaQuery.of(context).size.width;
-    _deviceHeight = MediaQuery.of(context).size.height;
     String minutes =
         ((_milliseconds / (1000 * 60)) % 60).floor().toString()
             .padLeft(2, '0');
