@@ -1,4 +1,8 @@
+import 'dart:async';
+
+import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class SearchBooksTopScreen extends StatefulWidget {
   const SearchBooksTopScreen({super.key});
@@ -8,12 +12,25 @@ class SearchBooksTopScreen extends StatefulWidget {
 }
 
 class SearchBooksTopScreenState extends State<SearchBooksTopScreen> {
+  ScanResult? scanResult;
+
+  final _flashOnController = TextEditingController(text: 'Flash on');
+  final _flashOffController = TextEditingController(text: 'Flash off');
+  final _cancelController = TextEditingController(text: 'Cancel');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('書籍検索'),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.camera),
+            tooltip: 'Scan',
+            onPressed: _scan,
+          )
+        ],
       ),
       body: const SafeArea(
         child: Center(
@@ -23,10 +40,37 @@ class SearchBooksTopScreenState extends State<SearchBooksTopScreen> {
           ),
         ),
       ),
-      floatingActionButton: const FloatingActionButton(
-        onPressed: null,
-        child: Icon(Icons.camera),
-      ),
     );
+  }
+
+  Future<void> _scan() async {
+    try {
+      final result = await BarcodeScanner.scan(
+        options: ScanOptions(
+          strings: {
+            'cancel': _cancelController.text,
+            'flash_on': _flashOnController.text,
+            'flash_off': _flashOffController.text,
+          },
+          // restrictFormat: selectedFormats,
+          // useCamera: _selectedCamera,
+          // autoEnableFlash: _autoEnableFlash,
+          // android: AndroidOptions(
+          //   aspectTolerance: _aspectTolerance,
+          //   useAutoFocus: _useAutoFocus,
+          // ),
+        ),
+      );
+      setState(() => scanResult = result);
+    } on PlatformException catch (e) {
+      setState(() {
+        scanResult = ScanResult(
+          type: ResultType.Error,
+          rawContent: e.code == BarcodeScanner.cameraAccessDenied
+              ? 'The user did not grant the camera permission!'
+              : 'Unknown error: $e',
+        );
+      });
+    }
   }
 }
