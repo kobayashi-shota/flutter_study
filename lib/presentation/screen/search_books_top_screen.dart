@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:barcode_scan2/barcode_scan2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_study/presentation/screen/webview_screen.dart';
 
 class SearchBooksTopScreen extends StatefulWidget {
   const SearchBooksTopScreen({super.key});
@@ -29,7 +30,19 @@ class SearchBooksTopScreenState extends State<SearchBooksTopScreen> {
             icon: const Icon(Icons.camera),
             tooltip: 'Scan',
             onPressed: _scan,
-          )
+          ),
+          IconButton(
+            icon: const Icon(Icons.camera),
+            tooltip: 'Scan',
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (context) => const WebViewScreen(),
+                ),
+              );
+            },
+          ),
         ],
       ),
       body: const SafeArea(
@@ -52,13 +65,6 @@ class SearchBooksTopScreenState extends State<SearchBooksTopScreen> {
             'flash_on': _flashOnController.text,
             'flash_off': _flashOffController.text,
           },
-          // restrictFormat: selectedFormats,
-          // useCamera: _selectedCamera,
-          // autoEnableFlash: _autoEnableFlash,
-          // android: AndroidOptions(
-          //   aspectTolerance: _aspectTolerance,
-          //   useAutoFocus: _useAutoFocus,
-          // ),
         ),
       );
       setState(() => scanResult = result);
