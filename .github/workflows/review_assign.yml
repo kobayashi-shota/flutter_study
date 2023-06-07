@@ -10,7 +10,7 @@ jobs:
       - uses: hkusu/review-assign-action@v1
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN}}
-          REVIEWERS: ${{ vars.REVIEWERS }}
+          GITHUB_TOKEN: ${{ vars.REVIEWERS }}
         with:
           assignees: ${{ github.actor }}
           reviewers: REVIEWERS
