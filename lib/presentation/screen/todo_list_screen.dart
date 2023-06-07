@@ -9,7 +9,7 @@ class TodoAppScreen extends StatefulWidget {
 }
 
 class _TodoAppScreenState extends State<TodoAppScreen> {
-  List<TodoItem> todoItems = [];
+  final List<TodoItem> todoItems = [];
 
   final _addFormKey = GlobalKey<FormState>();
   final _editFormKey = GlobalKey<FormState>();
@@ -20,29 +20,29 @@ class _TodoAppScreenState extends State<TodoAppScreen> {
       final title = _textEditingController.text.trim();
 
       setState(() {
-        todoItems.add(TodoItem(title: title));
+        todoItems.add(TodoItem(title: title, completed: false));
       });
 
       _textEditingController.clear();
     }
   }
 
-  void _editTodoItem(TodoItem todoItem) {
+  void _editTodoItem(int index) {
     showDialog<void>(
       context: context,
       builder: (context) {
-        var editedTitle = todoItem.title;
+        var editedTitle = '';
         return AlertDialog(
-          title: Text('Todoの編集: ${todoItem.title}'),
+          title: Text('Todoの編集: ${todoItems[index].title}'),
           content: Form(
             key: _editFormKey,
             child: TextFormField(
-              initialValue: editedTitle,
+              initialValue: todoItems[index].title,
               decoration: const InputDecoration(
                 labelText: 'タイトル',
               ),
-              onChanged: (value) {
-                editedTitle = value;
+              onChanged: (title) {
+                editedTitle = title;
               },
               validator: validate,
             ),
@@ -58,7 +58,8 @@ class _TodoAppScreenState extends State<TodoAppScreen> {
               onPressed: () {
                 if (_editFormKey.currentState!.validate()) {
                   setState(() {
-                    todoItem.title = editedTitle;
+                    todoItems[index] =
+                        todoItems[index].copyWith(title: editedTitle);
                   });
                   _textEditingController.clear();
                   Navigator.pop(context);
@@ -155,17 +156,17 @@ class _TodoAppScreenState extends State<TodoAppScreen> {
               ElevatedButton(
                 onPressed: _addTodoItem,
                 child: const Text('追加'),
-            ),
-            const SizedBox(height: 16),
-            Expanded(
-              child: ListView.separated(
-                itemCount: todoItems.length,
-                separatorBuilder: (context, index) => const Divider(),
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    title: Text(
-                      todoItems[index].title,
-                      style: TextStyle(
+              ),
+              const SizedBox(height: 16),
+              Expanded(
+                child: ListView.separated(
+                  itemCount: todoItems.length,
+                  separatorBuilder: (context, index) => const Divider(),
+                  itemBuilder: (context, index) {
+                    return ListTile(
+                      title: Text(
+                        todoItems[index].title,
+                        style: TextStyle(
                           color: todoItems[index].completed
                               ? Colors.grey
                               : Colors.black,
@@ -173,17 +174,18 @@ class _TodoAppScreenState extends State<TodoAppScreen> {
                               ? TextDecoration.lineThrough
                               : null,
                           fontSize: 24,
+                        ),
                       ),
-                    ),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Checkbox(
-                          value: todoItems[index].completed,
-                          onChanged: (value) {
-                            setState(() {
-                              todoItems[index].completed = value ?? false;
-                            });
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Checkbox(
+                            value: todoItems[index].completed,
+                            onChanged: (value) {
+                              setState(() {
+                                todoItems[index] = todoItems[index]
+                                    .copyWith(completed: value ?? false);
+                              });
                             },
                           ),
                           IconButton(
@@ -195,7 +197,7 @@ class _TodoAppScreenState extends State<TodoAppScreen> {
                         ],
                       ),
                       onTap: () {
-                        _editTodoItem(todoItems[index]);
+                        _editTodoItem(index);
                       },
                     );
                   },

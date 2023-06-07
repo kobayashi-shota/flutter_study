@@ -1,6 +1,11 @@
-class TodoItem {
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  TodoItem({required this.title, this.completed = false});
-  String title;
-  bool completed;
+part 'todo_item.freezed.dart';
+
+@freezed
+class TodoItem with _$TodoItem {
+  const factory TodoItem({
+    required String title,
+    required bool completed,
+  }) = _TodoItem;
 }
