@@ -2,18 +2,30 @@ import 'package:flutter/material.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewScreen extends StatefulWidget {
-  const WebViewScreen({super.key});
+  const WebViewScreen({super.key, required this.url});
+
+  final String url;
 
   @override
   State<WebViewScreen> createState() => _WebViewScreenState();
 }
 
 class _WebViewScreenState extends State<WebViewScreen> {
+  late WebViewController _webViewController;
   bool _isLoading = true;
+  String _pageTitle = '';
+
+  Future<void> _getPageTitle() async {
+    final title = await _webViewController.getTitle();
+
+    setState(() {
+      _pageTitle = title ?? '';
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final controller = WebViewController()
+    _webViewController = WebViewController()
       ..setJavaScriptMode(JavaScriptMode.unrestricted)
       ..setBackgroundColor(const Color(0x00000000))
       ..setNavigationDelegate(
@@ -22,21 +34,16 @@ class _WebViewScreenState extends State<WebViewScreen> {
             setState(() {
               _isLoading = false;
             });
-          },
-          onWebResourceError: (WebResourceError error) {},
-          onNavigationRequest: (NavigationRequest request) {
-            if (request.url.startsWith('https://www.youtube.com/')) {
-              return NavigationDecision.prevent;
-            }
-            return NavigationDecision.navigate;
+            _getPageTitle();
           },
         ),
       )
-      ..loadRequest(Uri.parse('https://flutter.dev'));
+      ..loadRequest(Uri.parse(widget.url));
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: const Text('Flutter WebView'),
+        title: Text(_pageTitle),
       ),
       body: Column(
         children: [
@@ -44,7 +51,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
               ? const LinearProgressIndicator()
               : const SizedBox.shrink(),
           Expanded(
-            child: WebViewWidget(controller: controller),
+            child: WebViewWidget(controller: _webViewController),
           )
         ],
       ),
