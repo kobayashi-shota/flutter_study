@@ -1,39 +1,15 @@
-name: Review assign
-
+name: Review Assign
 on:
   pull_request:
-    types: [opened, ready_for_review]
-
+    types: [opened, reopened, ready_for_review]
 jobs:
   assign:
     runs-on: ubuntu-latest
-    # https://qiita.com/hkusu/items/39eb92dbd4d6db8a14d8
     steps:
-      - name: Set assignees
+      # ランダムでレビュアーをアサイン
+      - uses: hkusu/review-assign-action@v1
         env:
-          ASSIGNEES: "${{ github.actor }}"
-          ACCESS_TOKEN: "${{ secrets.ACCESS_TOKEN}} "
-        run: |
-          assignee_count=$(cat ${{ github.event_path }} | jq '.pull_request.assignees | length')
-          if [[ 0 == $assignee_count ]]; then
-            assignees=$(echo "\"${ASSIGNEES// /}\"" | jq 'split(",")')
-            curl -X POST \
-                 -H "Content-Type: application/json" \
-                 -H "Authorization: token $ACCESS_TOKEN" \
-                 -d "{ \"assignees\": $assignees }" \
-                 https://api.github.com/repos/${{ github.repository }}/issues/${{ github.event.pull_request.number }}/assignees
-          fi
-      - name: Set reviewers
-        env:
-          REVIEWERS: ${{ vars.REVIEWERS }}
-          ACCESS_TOKEN: "${{ secrets.ACCESS_TOKEN}} "
-        run: |
-          reviewer_count=$(cat ${{ github.event_path }} | jq '.pull_request.requested_reviewers | length')
-          if [[ 0 == $reviewer_count ]]; then
-            reviewers=$(echo "\"${REVIEWERS// /}\"" | jq 'split(",") | .-["${{ github.actor }}"]')
-            curl -X POST \
-                 -H "Content-Type: application/json" \
-                 -H "Authorization: token $ACCESS_TOKEN" \
-                 -d "{ \"reviewers\": $reviewers }" \
-                 https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/requested_reviewers
-          fi
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN}}
+        with:
+          assignees: ${{ github.actor }}
+          reviewers: ${{ vars.REVIEWERS }}
