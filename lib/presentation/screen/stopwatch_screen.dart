@@ -18,28 +18,25 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
   late double elapsedWidth = _deviceWidth * 0.2;
   late double separatorWidth = _deviceWidth * 0.05;
 
-  ButtonStyle get startButtonStyle => ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(Colors.greenAccent),
-        textStyle: MaterialStateProperty.all<TextStyle>(
-          const TextStyle(fontWeight: FontWeight.w400),
-        ),
-      );
+  ButtonStyle customButtonStyle(
+    Color backgroundColor,
+    FontWeight fontWeight,
+  ) {
+    return ButtonStyle(
+      backgroundColor: MaterialStateProperty.all<Color>(backgroundColor),
+      textStyle: MaterialStateProperty.all<TextStyle>(
+        TextStyle(fontWeight: fontWeight),
+      ),
+    );
+  }
 
-  ButtonStyle get stopButtonStyle => ButtonStyle(
-        backgroundColor: MaterialStateProperty.all<Color>(Colors.redAccent),
-        textStyle: MaterialStateProperty.all<TextStyle>(
-          const TextStyle(fontWeight: FontWeight.w400),
-        ),
-      );
-
-  SizedBox timerBox(String text, double width)
-  => SizedBox(
+  SizedBox timerBox(String text, double width) => SizedBox(
         width: width,
         child: Text(
           text,
           style: const TextStyle(
-              fontSize: 48,
-              fontWeight: FontWeight.normal,
+            fontSize: 48,
+            fontWeight: FontWeight.normal,
           ),
         ),
       );
@@ -94,6 +91,14 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
         ((_milliseconds / 1000) % 60).floor().toString().padLeft(2, '0');
     final milliseconds =
         (_milliseconds % 1000 ~/ 10).toString().padLeft(2, '0');
+    final startButtonStyle = customButtonStyle(
+      Colors.greenAccent,
+      FontWeight.w400,
+    );
+    final stopButtonStyle = customButtonStyle(
+      Colors.redAccent,
+      FontWeight.w400,
+    );
 
     return Scaffold(
       appBar: AppBar(
