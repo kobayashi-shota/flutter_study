@@ -14,9 +14,6 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
   late Timer _timer;
   int _milliseconds = 0;
   bool _isRunning = false;
-  late final double _deviceWidth = MediaQuery.of(context).size.width;
-  late double elapsedWidth = _deviceWidth * 0.2;
-  late double separatorWidth = _deviceWidth * 0.05;
 
   ButtonStyle customButtonStyle(
     Color backgroundColor,
@@ -88,45 +85,54 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
       Colors.redAccent,
       FontWeight.w400,
     );
+    final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: const Text('Stopwatch App'),
       ),
-      body: Center(
-        widthFactor: MediaQuery.of(context).size.width,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FittedBox(
-              child: Text(
-                '$hours:$minutes:$seconds.$milliseconds',
-                maxLines: 1,
-                style: const TextStyle(
-                  fontFamily: 'Menlo',
-                  fontSize: 1000,
-                  fontWeight: FontWeight.normal,
+      body: SafeArea(
+        child: Center(
+          widthFactor: screenWidth,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              FittedBox(
+                child: Text(
+                  '$hours:$minutes:$seconds.$milliseconds',
+                  maxLines: 1,
+                  style: const TextStyle(
+                    fontFamily: 'Menlo',
+                    fontSize: 1000,
+                    fontWeight: FontWeight.normal,
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 24),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: _isRunning ? null : reset,
-                  child: const Text('リセット'),
-                ),
-                const SizedBox(width: 16),
-                ElevatedButton(
-                  onPressed: _isRunning ? stop : start,
-                  style: _isRunning ? stopButtonStyle : startButtonStyle,
-                  child: _isRunning ? const Text('停止') : const Text('開始'),
-                ),
-              ],
-            ),
-          ],
+              const SizedBox(height: 24),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    width: screenWidth / 3,
+                    child: ElevatedButton(
+                      onPressed: _isRunning ? null : reset,
+                      child: const Text('リセット'),
+                    ),
+                  ),
+                  const SizedBox(width: 16),
+                  SizedBox(
+                    width: screenWidth / 3,
+                    child: ElevatedButton(
+                      onPressed: _isRunning ? stop : start,
+                      style: _isRunning ? stopButtonStyle : startButtonStyle,
+                      child: _isRunning ? const Text('停止') : const Text('開始'),
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
