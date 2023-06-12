@@ -20,7 +20,7 @@ class _TodoAppScreenState extends State<TodoAppScreen> {
       final title = _textEditingController.text.trim();
 
       setState(() {
-        todoItems.add(TodoItem(title: title, completed: false));
+        todoItems.add(TodoItem(title: title));
       });
 
       _textEditingController.clear();
@@ -184,7 +184,7 @@ class _TodoAppScreenState extends State<TodoAppScreen> {
                             onChanged: (value) {
                               setState(() {
                                 todoItems[index] = todoItems[index]
-                                    .copyWith(completed: value ?? false);
+                                    .copyWith(isCompleted: value ?? false);
                               });
                             },
                           ),

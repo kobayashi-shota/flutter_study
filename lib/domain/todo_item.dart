@@ -1,11 +1,22 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:flutter/cupertino.dart';
 
-part 'todo_item.freezed.dart';
+@immutable
+class TodoItem {
+  const TodoItem({
+    /// インスタンス生成時にisCompleted=trueは有り得ない
+    this.completed = false,
+    required this.title,
+  });
 
-@freezed
-class TodoItem with _$TodoItem {
-  const factory TodoItem({
-    required String title,
-    required bool completed,
-  }) = _TodoItem;
+  final bool completed;
+  final String title;
+
+  TodoItem copyWith({
+    bool? isCompleted,
+    String? title,
+  }) =>
+      TodoItem(
+        completed: isCompleted ?? this.completed,
+        title: title ?? this.title,
+      );
 }
