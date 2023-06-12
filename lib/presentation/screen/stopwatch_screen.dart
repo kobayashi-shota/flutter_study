@@ -86,6 +86,7 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
       FontWeight.w400,
     );
     final screenWidth = MediaQuery.of(context).size.width;
+    final buttonWidth = screenWidth / 3;
 
     return Scaffold(
       appBar: AppBar(
@@ -114,7 +115,7 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   SizedBox(
-                    width: screenWidth / 3,
+                    width: buttonWidth,
                     child: ElevatedButton(
                       onPressed: _isRunning ? null : reset,
                       child: const Text('リセット'),
@@ -122,7 +123,7 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
                   ),
                   const SizedBox(width: 16),
                   SizedBox(
-                    width: screenWidth / 3,
+                    width: buttonWidth,
                     child: ElevatedButton(
                       onPressed: _isRunning ? stop : start,
                       style: _isRunning ? stopButtonStyle : startButtonStyle,
