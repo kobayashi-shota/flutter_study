@@ -30,17 +30,6 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
     );
   }
 
-  SizedBox timerBox(String text, double width) => SizedBox(
-        width: width,
-        child: Text(
-          text,
-          style: const TextStyle(
-            fontSize: 48,
-            fontWeight: FontWeight.normal,
-          ),
-        ),
-      );
-
   void start() {
     setState(() {
       _isRunning = true;
@@ -106,22 +95,19 @@ class _StopwatchScreenState extends State<StopwatchScreen> {
         title: const Text('Stopwatch App'),
       ),
       body: Center(
+        widthFactor: MediaQuery.of(context).size.width,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FittedBox(
-              fit: BoxFit.fill,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  timerBox(hours, elapsedWidth),
-                  timerBox(':', separatorWidth),
-                  timerBox(minutes, elapsedWidth),
-                  timerBox(':', separatorWidth),
-                  timerBox(seconds, elapsedWidth),
-                  timerBox('.', separatorWidth),
-                  timerBox(milliseconds, elapsedWidth),
-                ],
+              child: Text(
+                '$hours:$minutes:$seconds.$milliseconds',
+                maxLines: 1,
+                style: const TextStyle(
+                  fontFamily: 'Menlo',
+                  fontSize: 1000,
+                  fontWeight: FontWeight.normal,
+                ),
               ),
             ),
             const SizedBox(height: 24),
