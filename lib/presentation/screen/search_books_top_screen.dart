@@ -16,10 +16,6 @@ class SearchBooksTopScreen extends StatefulWidget {
 class SearchBooksTopScreenState extends State<SearchBooksTopScreen> {
   ScanResult? scanResult;
 
-  final _flashOnController = TextEditingController(text: 'Flash on');
-  final _flashOffController = TextEditingController(text: 'Flash off');
-  final _cancelController = TextEditingController(text: 'Cancel');
-
   @override
   Widget build(BuildContext context) {
     final scanResult = this.scanResult;
@@ -85,15 +81,7 @@ class SearchBooksTopScreenState extends State<SearchBooksTopScreen> {
 
   Future<void> _scan(BuildContext context) async {
     try {
-      final result = await BarcodeScanner.scan(
-        options: ScanOptions(
-          strings: {
-            'cancel': _cancelController.text,
-            'flash_on': _flashOnController.text,
-            'flash_off': _flashOffController.text,
-          },
-        ),
-      );
+      final result = await BarcodeScanner.scan();
 
       if (result.rawContent.isValidISBN()) {
         setState(() => scanResult = result);
