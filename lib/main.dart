@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study/presentation/screen/todo_list_screen.dart';
+import 'package:flutter_study/presentation/screen/stopwatch_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -8,15 +8,16 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Todo',
+      title: 'Flutter Stopwatch',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const TodoAppScreen(),
+      home: const StopwatchScreen(),
     );
   }
 }
