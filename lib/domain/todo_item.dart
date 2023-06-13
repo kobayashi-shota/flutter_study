@@ -16,7 +16,7 @@ class TodoItem {
     String? title,
   }) =>
       TodoItem(
-        completed: isCompleted ?? this.completed,
+        completed: isCompleted ?? completed,
         title: title ?? this.title,
       );
 }
