@@ -61,9 +61,9 @@ class SearchBooksTopScreenState extends State<SearchBooksTopScreen> {
                           ),
                           ListTile(
                             title: const Text('ISBN10'),
-                            subtitle: Text(''
-                                // scanResult.rawContent.toISBN10() ?? '変換できませんでした',
-                                ),
+                            subtitle: Text(
+                              scanResult.rawContent.toISBN10() ?? '変換できませんでした',
+                            ),
                           ),
                           ListTile(
                             title: const Text('フォーマット'),
