@@ -60,6 +60,12 @@ class SearchBooksTopScreenState extends State<SearchBooksTopScreen> {
                             subtitle: Text(scanResult.rawContent),
                           ),
                           ListTile(
+                            title: const Text('ISBN10'),
+                            subtitle: Text(''
+                                // scanResult.rawContent.toISBN10() ?? '変換できませんでした',
+                                ),
+                          ),
+                          ListTile(
                             title: const Text('フォーマット'),
                             subtitle: Text(scanResult.format.toString()),
                           ),
@@ -83,21 +89,7 @@ class SearchBooksTopScreenState extends State<SearchBooksTopScreen> {
     try {
       final result = await BarcodeScanner.scan();
 
-      if (result.rawContent.isValidISBN()) {
-        setState(() => scanResult = result);
-
-        final isbn = result.rawContent.dropFirst(3);
-        if (!mounted) {
-          return;
-        }
-        await Navigator.push(
-          context,
-          MaterialPageRoute<void>(
-            builder: (context) =>
-                WebViewScreen(url: 'https://www.amazon.co.jp/dp/$isbn'),
-          ),
-        );
-      } else {
+      if (result.rawContent.getDpParameter() == null) {
         if (!mounted) {
           return;
         }
@@ -112,6 +104,21 @@ class SearchBooksTopScreenState extends State<SearchBooksTopScreen> {
 
         ScaffoldMessenger.of(context).showSnackBar(snackBar);
       }
+
+      setState(() => scanResult = result);
+
+      final isbn = result.rawContent.getDpParameter();
+
+      if (!mounted) {
+        return;
+      }
+      await Navigator.push(
+        context,
+        MaterialPageRoute<void>(
+          builder: (context) =>
+              WebViewScreen(url: 'https://www.amazon.co.jp/dp/$isbn'),
+        ),
+      );
     } on PlatformException catch (e) {
       setState(() {
         scanResult = ScanResult(
