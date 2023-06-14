@@ -62,7 +62,7 @@ extension IntExtension on int {
           .map(int.parse)
           .toList();
     } else {
-      digits = input.split('').map(int.parse).toList();
+      digits = input.dropLast(1).split('').map(int.parse).toList();
     }
 
     debugPrint('input: $input');
