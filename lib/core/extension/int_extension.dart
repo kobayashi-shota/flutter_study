@@ -87,11 +87,7 @@ extension IntExtension on int {
 
     debugPrint('remainder: $remainder = $checkSum % $modulus');
 
-    final checkDigit = switch (remainder) {
-      0 => '0',
-      11 => '0',
-      _ => (modulus - remainder).toString()
-    };
+    final checkDigit = remainder == 0 ? '0' : (modulus - remainder).toString();
 
     debugPrint('checkDigit: $checkDigit');
 
