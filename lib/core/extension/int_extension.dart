@@ -8,6 +8,7 @@ extension IntExtension on int {
     String input,
   ) {
     const modulus = 10;
+    const weight = 3;
     var checkSum = 0;
 
     debugPrint('input: $input');
@@ -25,7 +26,7 @@ extension IntExtension on int {
       if (index.isEven) {
         checkSum += digit;
       } else {
-        checkSum += digit * 3;
+        checkSum += digit * weight;
       }
     }
 
