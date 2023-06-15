@@ -38,7 +38,7 @@ extension IntExtension on int {
     debugPrint('checkDigit: $checkDigit');
 
     return switch (checkDigit) {
-      10 => '0',
+      modulus => '0',
       _ => checkDigit.toString(),
     };
   }
