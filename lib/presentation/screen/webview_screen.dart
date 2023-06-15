@@ -45,15 +45,17 @@ class _WebViewScreenState extends State<WebViewScreen> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(_pageTitle),
       ),
-      body: Column(
-        children: [
-          _isLoading
-              ? const LinearProgressIndicator()
-              : const SizedBox.shrink(),
-          Expanded(
-            child: WebViewWidget(controller: _webViewController),
-          )
-        ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            _isLoading
+                ? const LinearProgressIndicator()
+                : const SizedBox.shrink(),
+            Expanded(
+              child: WebViewWidget(controller: _webViewController),
+            )
+          ],
+        ),
       ),
     );
   }
