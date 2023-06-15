@@ -47,12 +47,19 @@ extension IntExtension on int {
     String input, {
     bool onlyCheckDigit = true,
   }) {
-    final weights = <int>[10, 9, 8, 7, 6, 5, 4, 3, 2];
+    const weight = 10;
+    final weights = List<int>.generate(
+      // 重みづけは末尾以外だけ
+      weight - 1,
+      (index) => weight - index,
+      growable: false,
+    );
     const modulus = 11;
     var checkSum = 0;
     var digits = <int>[];
 
     debugPrint('input: $input');
+    debugPrint('weights: $weights');
 
     if (input.length == 13 && input.startsWith(StringConstants.isbnPrefix)) {
       digits = input
