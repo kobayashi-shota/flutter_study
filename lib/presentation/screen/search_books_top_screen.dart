@@ -34,50 +34,46 @@ class SearchBooksTopScreenState extends State<SearchBooksTopScreen> {
       ),
       body: SafeArea(
         child: Center(
-          child: Column(
-            children: [
-              ListView(
-                shrinkWrap: true,
-                children: <Widget>[
-                  const ListTile(
-                    title: Text('機能'),
-                    subtitle: Text('ボタンをタップするとカメラが起動して\nISBNコードをスキャンできます'),
-                  ),
-                  if (scanResult != null)
-                    Card(
-                      child: Column(
-                        children: <Widget>[
-                          const ListTile(
-                            title: Text('スキャン結果'),
-                            subtitle: Text('以下はスキャン結果の詳細です'),
-                          ),
-                          ListTile(
-                            title: const Text('結果種類'),
-                            subtitle: Text(scanResult.type.toString()),
-                          ),
-                          ListTile(
-                            title: const Text('内容'),
-                            subtitle: Text(scanResult.rawContent),
-                          ),
-                          ListTile(
-                            title: const Text('ISBN10'),
-                            subtitle: Text(
-                              scanResult.rawContent.toISBN10() ?? '変換できませんでした',
-                            ),
-                          ),
-                          ListTile(
-                            title: const Text('フォーマット'),
-                            subtitle: Text(scanResult.format.toString()),
-                          ),
-                          ListTile(
-                            title: const Text('備考'),
-                            subtitle: Text(scanResult.formatNote),
-                          ),
-                        ],
-                      ),
-                    ),
-                ],
+          child: ListView(
+            shrinkWrap: true,
+            children: <Widget>[
+              const ListTile(
+                title: Text('機能'),
+                subtitle: Text('ボタンをタップするとカメラが起動して\nISBNコードをスキャンできます'),
               ),
+              if (scanResult != null)
+                Card(
+                  child: Column(
+                    children: <Widget>[
+                      const ListTile(
+                        title: Text('スキャン結果'),
+                        subtitle: Text('以下はスキャン結果の詳細です'),
+                      ),
+                      ListTile(
+                        title: const Text('結果種類'),
+                        subtitle: Text(scanResult.type.toString()),
+                      ),
+                      ListTile(
+                        title: const Text('内容'),
+                        subtitle: Text(scanResult.rawContent),
+                      ),
+                      ListTile(
+                        title: const Text('ISBN10'),
+                        subtitle: Text(
+                          scanResult.rawContent.toISBN10() ?? '変換できませんでした',
+                        ),
+                      ),
+                      ListTile(
+                        title: const Text('フォーマット'),
+                        subtitle: Text(scanResult.format.toString()),
+                      ),
+                      ListTile(
+                        title: const Text('備考'),
+                        subtitle: Text(scanResult.formatNote),
+                      ),
+                    ],
+                  ),
+                ),
             ],
           ),
         ),
