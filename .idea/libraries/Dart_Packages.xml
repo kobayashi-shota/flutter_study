@@ -30,6 +30,13 @@
             </list>
           </value>
         </entry>
+        <entry key="barcode_scan2">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/barcode_scan2-4.2.4/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="boolean_selector">
           <value>
             <list>
@@ -468,6 +475,13 @@
           <value>
             <list>
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/process-4.2.4/lib" />
+              </list>
+          </value>
+        </entry>
+        <entry key="protobuf">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/protobuf-2.1.0/lib" />
             </list>
           </value>
         </entry>
@@ -671,6 +685,34 @@
           <value>
             <list>
               <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/xdg_directories-1.0.0/lib" />
+              </list>
+          </value>
+        </entry>
+        <entry key="webview_flutter">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter-4.2.2/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="webview_flutter_android">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_android-3.7.1/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="webview_flutter_platform_interface">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-2.3.1/lib" />
+            </list>
+          </value>
+        </entry>
+        <entry key="webview_flutter_wkwebview">
+          <value>
+            <list>
+              <option value="$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.4.4/lib" />
             </list>
           </value>
         </entry>
@@ -688,6 +730,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/analyzer-5.13.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/args-2.4.2/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/async-2.11.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/barcode_scan2-4.2.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/boolean_selector-2.1.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/build-2.4.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/build_config-1.1.1/lib" />
@@ -749,6 +792,7 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/plugin_platform_interface-2.1.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/pool-1.5.1/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/process-4.2.4/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/protobuf-2.1.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/pub_semver-2.1.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/pubspec_parse-1.2.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/retrofit-4.0.1/lib" />
@@ -777,6 +821,10 @@
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/web_socket_channel-2.4.0/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/win32-5.0.3/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/xdg_directories-1.0.0/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter-4.2.2/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_android-3.7.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_platform_interface-2.3.1/lib" />
+      <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/webview_flutter_wkwebview-3.4.4/lib" />
       <root url="file://$USER_HOME$/.pub-cache/hosted/pub.dev/yaml-3.1.2/lib" />
       <root url="file://$USER_HOME$/Desktop/dev/flutter/bin/cache/pkg/sky_engine/lib" />
       <root url="file://$USER_HOME$/Desktop/dev/flutter/packages/flutter/lib" />
