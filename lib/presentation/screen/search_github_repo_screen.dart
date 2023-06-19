@@ -26,13 +26,13 @@ class _SearchGithubHomeScreenState extends State<SearchGithubHomeScreen> {
         child: TextField(
           controller: _textEditingController,
           decoration: const InputDecoration(label: Text('GitHubでリポジトリを検索')),
-          onEditingComplete: () {
-            _searchedList.add(_textEditingController.text);
+          onSubmitted: (String text) {
+            _searchedList.add(text);
             Navigator.push(
               context,
               MaterialPageRoute<void>(
                 builder: (context) => SearchGithubResultScreen(
-                  query: _textEditingController.text.trim(),
+                  query: text.trim(),
                 ),
               ),
             );
