@@ -74,15 +74,16 @@ class _SearchGithubResultScreenState extends State<SearchGithubResultScreen> {
               return ListTile(
                 title: Text(repo.name),
                 subtitle: Text(repo.description ?? ''),
-                leading: repo.owner.avatarUrl == null
-                    ? const Icon(Icons.account_circle)
-                    : CachedNetworkImage(
-                        imageUrl: repo.owner.avatarUrl!,
-                        placeholder: (context, url) =>
-                            const CircularProgressIndicator(),
-                        errorWidget: (context, url, error) =>
-                            const Icon(Icons.error),
-                      ),
+                leading: switch (repo.owner.avatarUrl) {
+                  null => const Icon(Icons.account_circle),
+                  final avatarUrl => CachedNetworkImage(
+                      imageUrl: avatarUrl,
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    )
+                },
                 trailing: Text('⭐️${repo.stargazersCount}'),
               );
             },
