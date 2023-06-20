@@ -75,14 +75,14 @@ class _SearchGithubResultScreenState extends State<SearchGithubResultScreen> {
                 title: Text(repo.name),
                 subtitle: Text(repo.description ?? ''),
                 leading: switch (repo.owner.avatarUrl) {
-                  null => const Icon(Icons.account_circle),
-                  final avatarUrl => CachedNetworkImage(
+                  final avatarUrl? => CachedNetworkImage(
                       imageUrl: avatarUrl,
                       placeholder: (context, url) =>
                           const CircularProgressIndicator(),
                       errorWidget: (context, url, error) =>
                           const Icon(Icons.error),
-                    )
+                    ),
+                  _ => const Icon(Icons.account_circle),
                 },
                 trailing: Text('⭐️${repo.stargazersCount}'),
               );
