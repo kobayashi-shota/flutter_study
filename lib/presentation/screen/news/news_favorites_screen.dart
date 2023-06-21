@@ -119,7 +119,12 @@ class _NewsFavoritesScreenState extends State<NewsFavoritesScreen>
           )
         ],
         backgroundColor: Colors.pink,
-        title: const Text('favorites'),
+        title: Text(
+          widget.title,
+          style: const TextStyle(
+            color: Colors.white,
+          ),
+        ),
       ),
       body: ListView.builder(
         itemCount: favorites.length,
@@ -137,7 +142,9 @@ class _NewsFavoritesScreenState extends State<NewsFavoritesScreen>
                   ? CrossFadeState.showFirst
                   : CrossFadeState.showSecond,
               firstChild: IconButton(
-                icon: const Icon(Icons.remove_circle),
+                icon: const Icon(
+                  Icons.remove_circle,
+                ),
                 color: Colors.redAccent,
                 onPressed: () => deleteFavorite(favorites[index]),
               ),
