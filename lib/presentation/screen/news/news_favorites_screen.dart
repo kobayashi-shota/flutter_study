@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_study/application/use_case/delete_favorites_use_case_impl.dart';
 import 'package:flutter_study/application/use_case/get_favorites_use_case_impl.dart';
@@ -138,6 +139,15 @@ class _NewsFavoritesScreenState extends State<NewsFavoritesScreen>
               secondCurve: Curves.easeInExpo,
               sizeCurve: Curves.easeOutExpo,
             ),
+            trailing: switch (favorites[index].urlToImage) {
+              final urlToImage? => CachedNetworkImage(
+                  imageUrl: urlToImage,
+                  placeholder: (context, url) =>
+                      const CircularProgressIndicator(),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
+                ),
+              _ => const Icon(Icons.image),
+            },
             onTap: () {
               Navigator.push(
                 context,
