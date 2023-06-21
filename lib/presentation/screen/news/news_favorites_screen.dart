@@ -5,6 +5,7 @@ import 'package:flutter_study/infra/datasource/favorites_datasource_impl.dart';
 import 'package:flutter_study/infra/repository/favorites_repository_impl.dart';
 
 import '../../../infra/model/article.dart';
+import '../webview_screen.dart';
 
 class NewsFavoritesScreen extends StatefulWidget {
   const NewsFavoritesScreen({super.key});
@@ -66,6 +67,16 @@ class _NewsFavoritesScreenState extends State<NewsFavoritesScreen> {
               icon: const Icon(Icons.delete),
               onPressed: () => deletePerson(favorites[index]),
             ),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute<void>(
+                  builder: (context) => WebViewScreen(
+                    url: favorites[index].url,
+                  ),
+                ),
+              );
+            },
           );
         },
       ),
