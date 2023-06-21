@@ -14,7 +14,8 @@ class NewsFavoritesScreen extends StatefulWidget {
   State<NewsFavoritesScreen> createState() => _NewsFavoritesScreenState();
 }
 
-class _NewsFavoritesScreenState extends State<NewsFavoritesScreen> {
+class _NewsFavoritesScreenState extends State<NewsFavoritesScreen>
+    with SingleTickerProviderStateMixin {
   final getFavoritesUseCase = GetFavoritesUseCaseImpl(
     FavoritesRepositoryImpl(FavoritesDatasourceImpl()),
   );
@@ -22,11 +23,18 @@ class _NewsFavoritesScreenState extends State<NewsFavoritesScreen> {
     FavoritesRepositoryImpl(FavoritesDatasourceImpl()),
   );
 
+  late final AnimationController controller;
+
   List<Article> favorites = [];
+  bool _isEditing = false;
 
   @override
   void initState() {
     super.initState();
+    controller = AnimationController(
+      duration: const Duration(seconds: 1),
+      vsync: this,
+    );
     loadPersonsFromJson();
   }
 
@@ -38,18 +46,69 @@ class _NewsFavoritesScreenState extends State<NewsFavoritesScreen> {
     });
   }
 
-  void deletePerson(Article article) {
-    setState(() {
-      favorites.remove(article);
-    });
+  void deleteFavorite(Article article) {
+    showDialog<void>(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: const Text('お気に入りの削除'),
+          content: Text('${article.title}を削除しますか？'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('キャンセル'),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  favorites.remove(article);
+                });
 
-    deleteFavoriteUseCase.delete(article);
+                deleteFavoriteUseCase.delete(article);
+
+                final snackBar = SnackBar(
+                  content: Text(
+                    'お気に入りから削除しました\n${article.title}\n${article.author}',
+                  ),
+                );
+
+                ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
+                Navigator.pop(context);
+              },
+              child: const Text(
+                '削除',
+                style: TextStyle(
+                  color: Colors.redAccent,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                _isEditing = !_isEditing;
+              });
+            },
+            icon: switch (_isEditing) {
+              true => const Icon(Icons.done),
+              false => const Icon(Icons.edit),
+            },
+          )
+        ],
         backgroundColor: Colors.pink,
         title: const Text('favorites'),
       ),
@@ -63,9 +122,21 @@ class _NewsFavoritesScreenState extends State<NewsFavoritesScreen> {
           return ListTile(
             title: Text(favorites[index].title),
             subtitle: Text(favorites[index].author.toString()),
-            trailing: IconButton(
-              icon: const Icon(Icons.delete),
-              onPressed: () => deletePerson(favorites[index]),
+            leading: AnimatedCrossFade(
+              alignment: Alignment.center,
+              crossFadeState: _isEditing
+                  ? CrossFadeState.showFirst
+                  : CrossFadeState.showSecond,
+              firstChild: IconButton(
+                icon: const Icon(Icons.remove_circle),
+                color: Colors.redAccent,
+                onPressed: () => deleteFavorite(favorites[index]),
+              ),
+              secondChild: const SizedBox.shrink(),
+              duration: const Duration(seconds: 1),
+              firstCurve: Curves.easeOutExpo,
+              secondCurve: Curves.easeInExpo,
+              sizeCurve: Curves.easeOutExpo,
             ),
             onTap: () {
               Navigator.push(
