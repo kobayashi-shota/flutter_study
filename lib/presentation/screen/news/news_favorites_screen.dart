@@ -9,7 +9,9 @@ import '../../../infra/model/article.dart';
 import '../webview_screen.dart';
 
 class NewsFavoritesScreen extends StatefulWidget {
-  const NewsFavoritesScreen({super.key});
+  const NewsFavoritesScreen({super.key, required this.title});
+
+  final String title;
 
   @override
   State<NewsFavoritesScreen> createState() => _NewsFavoritesScreenState();
@@ -105,8 +107,14 @@ class _NewsFavoritesScreenState extends State<NewsFavoritesScreen>
               });
             },
             icon: switch (_isEditing) {
-              true => const Icon(Icons.done),
-              false => const Icon(Icons.edit),
+              true => const Icon(
+                  Icons.done,
+                  color: Colors.white,
+                ),
+              false => const Icon(
+                  Icons.edit,
+                  color: Colors.white,
+                ),
             },
           )
         ],

@@ -12,9 +12,13 @@ class NewsTopScreen extends StatefulWidget {
 
 class _NewsTopScreenState extends State<NewsTopScreen>
     with SingleTickerProviderStateMixin {
-  static const List<Widget> screens = [
-    NewsHeadlinesScreen(),
-    NewsFavoritesScreen(),
+  static List<Widget> screens = [
+    NewsHeadlinesScreen(
+      title: tabs[0].text ?? 'トップ',
+    ),
+    NewsFavoritesScreen(
+      title: tabs[1].text ?? 'お気に入り',
+    ),
   ];
 
   static const List<Tab> tabs = [
