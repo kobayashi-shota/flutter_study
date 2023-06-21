@@ -1,0 +1,101 @@
+enum Country {
+  argentina(alpha2code: 'ar', name: 'Argentina'),
+  australia(alpha2code: 'au', name: 'Australia'),
+  austria(alpha2code: 'at', name: 'Austria'),
+  belgium(alpha2code: 'be', name: 'Belgium'),
+  bulgaria(alpha2code: 'bg', name: 'Bulgaria'),
+  canada(alpha2code: 'ca', name: 'Canada'),
+  china(alpha2code: 'cn', name: 'China'),
+  colombia(alpha2code: 'co', name: 'Colombia'),
+  cuba(alpha2code: 'cu', name: 'Cuba'),
+  czechRepublic(alpha2code: 'cz', name: 'Czech Republic'),
+  egypt(alpha2code: 'eg', name: 'Egypt'),
+  france(alpha2code: 'fr', name: 'France'),
+  germany(alpha2code: 'de', name: 'Germany'),
+  greece(alpha2code: 'gr', name: 'Greece'),
+  hongKong(alpha2code: 'hk', name: 'Hong Kong'),
+  hungary(alpha2code: 'hu', name: 'Hungary'),
+  india(alpha2code: 'in', name: 'India'),
+  indonesia(alpha2code: 'id', name: 'Indonesia'),
+  ireland(alpha2code: 'ie', name: 'Ireland'),
+  israel(alpha2code: 'il', name: 'Israel'),
+  italy(alpha2code: 'it', name: 'Italy'),
+  japan(alpha2code: 'jp', name: 'Japan'),
+  latvia(alpha2code: 'lv', name: 'Latvia'),
+  lithuania(alpha2code: 'lt', name: 'Lithuania'),
+  malaysia(alpha2code: 'my', name: 'Malaysia'),
+  mexico(alpha2code: 'mx', name: 'Mexico'),
+  morocco(alpha2code: 'ma', name: 'Morocco'),
+  netherlands(alpha2code: 'nl', name: 'Netherlands'),
+  nigeria(alpha2code: 'ng', name: 'Nigeria'),
+  norway(alpha2code: 'no', name: 'Norway'),
+  philippines(alpha2code: 'ph', name: 'Philippines'),
+  poland(alpha2code: 'pl', name: 'Poland'),
+  portugal(alpha2code: 'pt', name: 'Portugal'),
+  romania(alpha2code: 'ro', name: 'Romania'),
+  russia(alpha2code: 'ru', name: 'Russia'),
+  saudiArabia(alpha2code: 'sa', name: 'Saudi Arabia'),
+  serbia(alpha2code: 'rs', name: 'Serbia'),
+  singapore(alpha2code: 'sg', name: 'Singapore'),
+  slovakia(alpha2code: 'sk', name: 'Slovakia'),
+  slovenia(alpha2code: 'si', name: 'Slovenia'),
+  southAfrica(alpha2code: 'za', name: 'South Africa'),
+  southKorea(alpha2code: 'kr', name: 'South Korea'),
+  sweden(alpha2code: 'se', name: 'Sweden'),
+  switzerland(alpha2code: 'ch', name: 'Switzerland'),
+  taiwan(alpha2code: 'tw', name: 'Taiwan'),
+  thailand(alpha2code: 'th', name: 'Thailand'),
+  turkey(alpha2code: 'tr', name: 'Turkey'),
+  uae(alpha2code: 'ae', name: 'UAE'),
+  ukraine(alpha2code: 'ua', name: 'Ukraine'),
+  unitedKingdom(alpha2code: 'gb', name: 'United Kingdom'),
+  unitedStates(alpha2code: 'us', name: 'United States'),
+  venezuela(alpha2code: 've', name: 'Venezuela');
+
+  const Country({
+    required this.alpha2code,
+    required this.name,
+  });
+
+  final String alpha2code;
+  final String name;
+}
+
+// enum CountryCode {
+//   au,
+//   at,
+//   be,
+//   br,
+//   bg,
+//   ca,
+//   cn,
+//   co,
+//   cu,
+//   cz,
+//   eg,
+//   fr,
+//   de,
+//   gr,
+//   hk,
+//   hu,
+//   in,
+//   id,
+//   ie,
+//   il,
+//   it,
+//   jp,
+//   lv,
+//   lt,
+//   my,
+//   mx,
+//   ma
+// }
+//
+// final aaaa = AutofillHints.countryCode;
+//
+// final Map<CountryCode, String> countryNames = {
+//   CountryCode.af: 'Afghanistan',
+//   CountryCode.au: 'Albania',
+//   CountryCode.at: 'Algeria',
+//   // 他の国コードと国名の組み合わせを追加
+// };

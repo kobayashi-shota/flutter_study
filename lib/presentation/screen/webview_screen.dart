@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study/presentation/component/navigation_controls.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WebViewScreen extends StatefulWidget {
@@ -44,6 +45,9 @@ class _WebViewScreenState extends State<WebViewScreen> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(_pageTitle),
+        actions: [
+          NavigationControls(webViewController: _webViewController),
+        ],
       ),
       body: SafeArea(
         child: Column(
