@@ -1,7 +1,7 @@
 import '../../infra/model/article.dart';
 
 abstract class PostFavoritesUseCase {
-  Future<void> delete(Article article) {
+  Future<void> post(Article article) {
     throw UnimplementedError();
   }
 }

@@ -8,7 +8,7 @@ class PostFavoritesUseCaseImpl implements PostFavoritesUseCase {
   final FavoritesRepositoryImpl _repository;
 
   @override
-  Future<void> delete(Article article) async {
+  Future<void> post(Article article) async {
     await _repository.addFavorite(article);
   }
 }
