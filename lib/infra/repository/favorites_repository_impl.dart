@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_study/infra/datasource/favorites_datasource_impl.dart';
 
+import '../../core/exceptions/app_exception.dart';
 import '../../domain/repository/favorites_repository.dart';
 import '../model/article.dart';
 
@@ -30,6 +31,9 @@ class FavoritesRepositoryImpl implements FavoritesRepository {
   @override
   Future<void> addFavorite(Article article) async {
     final favorites = await getFavorites();
+    if (favorites.contains(article)) {
+      throw AlreadyExistsException();
+    }
     favorites.add(article);
     await datasource.saveFavorites(favorites);
   }

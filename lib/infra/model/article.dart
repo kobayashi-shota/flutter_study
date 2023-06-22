@@ -35,4 +35,30 @@ class Article {
         url: url,
         urlToImage: urlToImage,
       );
+
+  // 以下のoverrideはインスタンス内のプロパティが一致する場合
+  // contains==trueするため
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) {
+      return true;
+    }
+
+    return other is Article &&
+        other.name == name &&
+        other.author == author &&
+        other.title == title &&
+        other.publishedAt == publishedAt &&
+        other.url == url &&
+        other.urlToImage == urlToImage;
+  }
+
+  @override
+  int get hashCode =>
+      name.hashCode ^
+      author.hashCode ^
+      title.hashCode ^
+      publishedAt.hashCode ^
+      url.hashCode ^
+      urlToImage.hashCode;
 }
