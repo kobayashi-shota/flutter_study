@@ -133,9 +133,11 @@ class _NewsFavoritesScreenState extends State<NewsFavoritesScreen>
         false => ListView.builder(
             itemCount: favorites.length,
             itemBuilder: (context, index) {
+              final favorite = favorites[index];
+
               return ListTile(
-                title: Text(favorites[index].title),
-                subtitle: Text(favorites[index].author.toString()),
+                title: Text(favorite.title),
+                subtitle: Text(favorite.author.toString()),
                 leading: AnimatedCrossFade(
                   alignment: Alignment.center,
                   crossFadeState: _isEditing
@@ -146,7 +148,7 @@ class _NewsFavoritesScreenState extends State<NewsFavoritesScreen>
                       Icons.remove_circle,
                     ),
                     color: Colors.redAccent,
-                    onPressed: () => deleteFavorite(favorites[index]),
+                    onPressed: () => deleteFavorite(favorite),
                   ),
                   secondChild: const SizedBox.shrink(),
                   duration: const Duration(seconds: 1),
@@ -154,7 +156,7 @@ class _NewsFavoritesScreenState extends State<NewsFavoritesScreen>
                   secondCurve: Curves.easeInExpo,
                   sizeCurve: Curves.easeOutExpo,
                 ),
-                trailing: switch (favorites[index].urlToImage) {
+                trailing: switch (favorite.urlToImage) {
                   final urlToImage? => CachedNetworkImage(
                       imageUrl: urlToImage,
                       placeholder: (context, url) =>
@@ -169,7 +171,7 @@ class _NewsFavoritesScreenState extends State<NewsFavoritesScreen>
                     context,
                     MaterialPageRoute<void>(
                       builder: (context) => WebViewScreen(
-                        url: favorites[index].url,
+                        url: favorite.url,
                       ),
                     ),
                   );
