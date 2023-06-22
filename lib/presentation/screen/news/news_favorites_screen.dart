@@ -26,18 +26,12 @@ class _NewsFavoritesScreenState extends State<NewsFavoritesScreen>
     FavoritesRepositoryImpl(FavoritesDatasourceImpl()),
   );
 
-  late final AnimationController controller;
-
   List<Article> favorites = [];
   bool _isEditing = false;
 
   @override
   void initState() {
     super.initState();
-    controller = AnimationController(
-      duration: const Duration(seconds: 1),
-      vsync: this,
-    );
     loadPersonsFromJson();
   }
 
