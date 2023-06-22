@@ -126,56 +126,58 @@ class _NewsFavoritesScreenState extends State<NewsFavoritesScreen>
           ),
         ),
       ),
-      body: ListView.builder(
-        itemCount: favorites.length,
-        itemBuilder: (context, index) {
-          if (favorites.isEmpty) {
-            return const ListTile(title: Text('お気に入りはまだありません'));
-          }
-
-          return ListTile(
-            title: Text(favorites[index].title),
-            subtitle: Text(favorites[index].author.toString()),
-            leading: AnimatedCrossFade(
-              alignment: Alignment.center,
-              crossFadeState: _isEditing
-                  ? CrossFadeState.showFirst
-                  : CrossFadeState.showSecond,
-              firstChild: IconButton(
-                icon: const Icon(
-                  Icons.remove_circle,
-                ),
-                color: Colors.redAccent,
-                onPressed: () => deleteFavorite(favorites[index]),
-              ),
-              secondChild: const SizedBox.shrink(),
-              duration: const Duration(seconds: 1),
-              firstCurve: Curves.easeOutExpo,
-              secondCurve: Curves.easeInExpo,
-              sizeCurve: Curves.easeOutExpo,
-            ),
-            trailing: switch (favorites[index].urlToImage) {
-              final urlToImage? => CachedNetworkImage(
-                  imageUrl: urlToImage,
-                  placeholder: (context, url) =>
-                      const CircularProgressIndicator(),
-                  errorWidget: (context, url, error) => const Icon(Icons.error),
-                ),
-              _ => const Icon(Icons.image),
-            },
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute<void>(
-                  builder: (context) => WebViewScreen(
-                    url: favorites[index].url,
+      body: switch (favorites.isEmpty) {
+        true => const ListTile(
+            title: Text('お気に入りはまだありません'),
+          ),
+        false => ListView.builder(
+            itemCount: favorites.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                title: Text(favorites[index].title),
+                subtitle: Text(favorites[index].author.toString()),
+                leading: AnimatedCrossFade(
+                  alignment: Alignment.center,
+                  crossFadeState: _isEditing
+                      ? CrossFadeState.showFirst
+                      : CrossFadeState.showSecond,
+                  firstChild: IconButton(
+                    icon: const Icon(
+                      Icons.remove_circle,
+                    ),
+                    color: Colors.redAccent,
+                    onPressed: () => deleteFavorite(favorites[index]),
                   ),
+                  secondChild: const SizedBox.shrink(),
+                  duration: const Duration(seconds: 1),
+                  firstCurve: Curves.easeOutExpo,
+                  secondCurve: Curves.easeInExpo,
+                  sizeCurve: Curves.easeOutExpo,
                 ),
+                trailing: switch (favorites[index].urlToImage) {
+                  final urlToImage? => CachedNetworkImage(
+                      imageUrl: urlToImage,
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    ),
+                  _ => const Icon(Icons.image),
+                },
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (context) => WebViewScreen(
+                        url: favorites[index].url,
+                      ),
+                    ),
+                  );
+                },
               );
             },
-          );
-        },
-      ),
+          ),
+      },
     );
   }
 }
