@@ -7,12 +7,12 @@ part of 'article.dart';
 // **************************************************************************
 
 Article _$ArticleFromJson(Map<String, dynamic> json) => Article(
-      name: json['name'] as String?,
-      author: json['author'] as String?,
+      name: json['name'] as String? ?? '',
+      author: json['author'] as String? ?? '',
       title: json['title'] as String,
       url: json['url'] as String,
       publishedAt: json['publishedAt'] as String,
-      urlToImage: json['urlToImage'] as String?,
+      urlToImage: json['urlToImage'] as String? ?? '',
     );
 
 Map<String, dynamic> _$ArticleToJson(Article instance) => <String, dynamic>{

@@ -18,11 +18,14 @@ class Article {
   factory Article.fromJson(Map<String, dynamic> json) =>
       _$ArticleFromJson(json);
 
+  @JsonKey(defaultValue: '')
   final String? name;
+  @JsonKey(defaultValue: '')
   final String? author;
   final String title;
   final String publishedAt;
   final String url;
+  @JsonKey(defaultValue: '')
   final String? urlToImage;
 
   Map<String, dynamic> toJson() => _$ArticleToJson(this);
