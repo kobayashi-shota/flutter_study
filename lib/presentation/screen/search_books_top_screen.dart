@@ -10,7 +10,7 @@ class SearchBooksTopScreen extends StatefulWidget {
   const SearchBooksTopScreen({super.key});
 
   @override
-  State<StatefulWidget> createState() => SearchBooksTopScreenState();
+  State<SearchBooksTopScreen> createState() => SearchBooksTopScreenState();
 }
 
 class SearchBooksTopScreenState extends State<SearchBooksTopScreen> {
